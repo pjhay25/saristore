@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#245b3d"><title>Nerissa Sari-Sari Store Price List</title>
+<style>
+:root{--green:#245b3d;--dark:#17442c;--bg:#f5f7f3;--line:#e1e8df;--muted:#687469}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#202820;font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(135deg,#17442c,#34764d);color:white;padding:20px 15px}
+.head{max-width:900px;margin:auto;display:flex;align-items:center;gap:13px}.logo{width:52px;height:52px;border-radius:16px;background:#ffffff25;display:grid;place-items:center;font-size:30px}
+h1{font-size:clamp(1.4rem,4vw,1.9rem);margin:0 0 4px}header p{margin:0;color:#e3f0e6;font-size:.92rem}
+main{max-width:900px;margin:auto;padding:17px 13px 40px}.top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
+#helper{margin:0;color:var(--muted);font-size:.94rem}.count{white-space:nowrap;background:#e8f2e9;color:var(--dark);font-size:.82rem;font-weight:bold;padding:8px 11px;border-radius:30px}
+.search{position:relative;margin-bottom:17px}.search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:20px}
+#q{width:100%;padding:16px 14px 16px 45px;border:1px solid #d5dfd4;border-radius:14px;background:white;font-size:1rem;outline:none}
+#q:focus{border-color:var(--green);box-shadow:0 0 0 3px #245b3d18}
+.heading{display:flex;align-items:center;justify-content:space-between;margin:8px 1px 13px}.heading h2{font-size:1.15rem;margin:0}.hint{font-size:.8rem;color:var(--muted)}
+.cat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.cat{padding:0;border:1px solid var(--line);border-radius:17px;overflow:hidden;background:white;text-align:left;box-shadow:0 4px 14px #1837200d;cursor:pointer}
+.art{height:116px;display:grid;place-items:center;position:relative;overflow:hidden}.art:before,.art:after{content:"";position:absolute;border-radius:50%;background:#ffffff38}
+.art:before{width:135px;height:135px;right:-28px;top:-62px}.art:after{width:90px;height:90px;left:-27px;bottom:-48px}
+.art b{font-size:58px;z-index:1;filter:drop-shadow(0 4px 2px #0002)}
+.info{display:block;padding:11px 12px 13px}.cat-name{display:block;font-size:1rem;font-weight:800;line-height:1.25}.sub{display:block;font-size:.78rem;color:var(--muted);margin-top:4px;line-height:1.25}
+.qty{display:inline-block;margin-top:8px;background:#e8f2e9;color:var(--dark);padding:5px 8px;border-radius:20px;font-size:.74rem;font-weight:bold}
+.noodles{background:linear-gradient(135deg,#f9d77a,#f2a34b)}.canned{background:linear-gradient(135deg,#f6c2a5,#e88967)}
+.biscuits{background:linear-gradient(135deg,#f4d8a1,#d9a85f)}.snacks{background:linear-gradient(135deg,#f7c879,#ed9250)}
+.candy{background:linear-gradient(135deg,#f6b7d1,#dc83b4)}.coffee{background:linear-gradient(135deg,#d9b18b,#9b6948)}
+.drinks{background:linear-gradient(135deg,#a9dff0,#5daecf)}.condiments{background:linear-gradient(135deg,#e5d89b,#b7a451)}
+.cleaning{background:linear-gradient(135deg,#b8e4d1,#65b79a)}.personal{background:linear-gradient(135deg,#d8c4ef,#a58bd1)}
+.paper{background:linear-gradient(135deg,#d6e3f1,#91b2d3)}.bakery{background:linear-gradient(135deg,#f1d7a6,#c99a5c)}
+.supplies{background:linear-gradient(135deg,#d5d9df,#9ba7b5)}.household,.general{background:linear-gradient(135deg,#c8dfc3,#85b47d)}
+#inside{display:none}.back{border:0;border-radius:12px;background:#e8f2e9;color:var(--dark);font-weight:bold;font-size:.95rem;padding:12px 15px;margin:0 0 14px;cursor:pointer}
+.cat-title{display:flex;align-items:center;gap:12px;margin-bottom:12px}.cat-icon{width:58px;height:58px;border-radius:15px;display:grid;place-items:center;font-size:34px}
+.cat-title h2{margin:0;font-size:1.25rem}.cat-title p{margin:4px 0 0;color:var(--muted);font-size:.84rem}
+.group{font-size:1rem;color:var(--dark);margin:17px 1px 9px}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.item{min-height:90px;padding:13px 11px;border:1px solid var(--line);border-radius:13px;background:white;display:flex;flex-direction:column;justify-content:space-between}
+.item-name{font-size:.96rem;font-weight:700;line-height:1.3;overflow-wrap:anywhere}.price{font-size:1.12rem;font-weight:900;color:var(--dark);margin-top:12px}
+#searchResults{display:none}.empty{display:none;text-align:center;padding:28px;background:white;border:1px solid var(--line);border-radius:13px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.8rem;line-height:1.5;margin:23px 2px 0}
+@media(min-width:700px){.cat-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.art{height:135px}.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:360px){main{padding-left:10px;padding-right:10px}.art{height:96px}.info{padding:9px}.cat-name{font-size:.92rem}.item{padding:11px 9px}.item-name{font-size:.9rem}}
+</style></head><body>
+<header><div class="head"><div class="logo">🛒</div><div><h1>Nerissa Sari-Sari Store</h1><p>Product Price List</p></div></div></header>
+<main><div class="top"><p id="helper">Pumili ng kategorya para makita ang mga paninda.</p><span class="count" id="count">0 (bilang ng paninda)</span></div>
+<div class="search"><span>🔎</span><input id="q" type="search" placeholder="Maghanap ng Anumang Paninda..." autocomplete="off"></div>
+<section id="home"><div class="heading"><h2>Mga Kategorya ng Paninda</h2><span class="hint">Choose a category</span></div><div class="cat-grid" id="catGrid"></div></section>
+<section id="inside"><button class="back" id="back">← Bumalik sa mga kategorya</button><div class="cat-title"><div id="catIcon" class="cat-icon">🍜</div><div><h2 id="catTitle"></h2><p id="catSubtitle"></p></div></div><div id="catProducts"></div></section>
+<section id="searchResults"><div class="heading"><h2>Search Results</h2><span class="hint" id="found"></span></div><div id="searchProducts"></div></section>
+<div class="empty" id="empty">No matching product found. Try another name.</div>
+<!--<footer>All prices start at ₱0.00. Update the prices when ready. Product names are based on the supplied store video; unclear labels use general names.</footer>--></main>
+<script>
+const products=[{"name": "Instant pancit canton", "category": "Noodles", "price": 0}, {"name": "Instant cup noodles", "category": "Noodles", "price": 0}, {"name": "Instant mami noodles", "category": "Noodles", "price": 0}, {"name": "Other instant noodles", "category": "Noodles", "price": 0}, {"name": "Canned sardines", "category": "Canned Goods", "price": 0}, {"name": "Canned corned beef", "category": "Canned Goods", "price": 0}, {"name": "Canned meat loaf", "category": "Canned Goods", "price": 0}, {"name": "Canned luncheon meat", "category": "Canned Goods", "price": 0}, {"name": "Canned tuna", "category": "Canned Goods", "price": 0}, {"name": "Canned pork and beans", "category": "Canned Goods", "price": 0}, {"name": "Canned tomato sauce", "category": "Canned Goods", "price": 0}, {"name": "Canned evaporated milk", "category": "Canned Goods", "price": 0}, {"name": "Canned condensed milk", "category": "Canned Goods", "price": 0}, {"name": "Assorted canned goods", "category": "Canned Goods", "price": 0}, {"name": "Crackers", "category": "Biscuits & Crackers", "price": 0}, {"name": "Salted crackers", "category": "Biscuits & Crackers", "price": 0}, {"name": "Sandwich biscuits", "category": "Biscuits & Crackers", "price": 0}, {"name": "Chocolate biscuits", "category": "Biscuits & Crackers", "price": 0}, {"name": "Wafer sticks", "category": "Biscuits & Crackers", "price": 0}, {"name": "Assorted cookies", "category": "Biscuits & Crackers", "price": 0}, {"name": "Assorted snack chips", "category": "Snacks", "price": 0}, {"name": "Corn chips", "category": "Snacks", "price": 0}, {"name": "Potato chips", "category": "Snacks", "price": 0}, {"name": "Cheese snacks", "category": "Snacks", "price": 0}, {"name": "Assorted candies", "category": "Candy & Sweets", "price": 0}, {"name": "Chewy candy", "category": "Candy & Sweets", "price": 0}, {"name": "Lollipops", "category": "Candy & Sweets", "price": 0}, {"name": "Bubble gum", "category": "Candy & Sweets", "price": 0}, {"name": "Chocolate bars", "category": "Candy & Sweets", "price": 0}, {"name": "3-in-1 coffee sachet", "category": "Coffee & Drinks", "price": 0}, {"name": "Instant black coffee sachet", "category": "Coffee & Drinks", "price": 0}, {"name": "Coffee creamer sachet", "category": "Coffee & Drinks", "price": 0}, {"name": "Chocolate malt drink sachet", "category": "Coffee & Drinks", "price": 0}, {"name": "Powdered juice drink sachet", "category": "Coffee & Drinks", "price": 0}, {"name": "Powdered milk sachet", "category": "Coffee & Drinks", "price": 0}, {"name": "Bottled soft drinks", "category": "Drinks", "price": 0}, {"name": "Bottled water", "category": "Drinks", "price": 0}, {"name": "Juice drink", "category": "Drinks", "price": 0}, {"name": "Soy sauce", "category": "Condiments", "price": 0}, {"name": "Vinegar", "category": "Condiments", "price": 0}, {"name": "Fish sauce / patis", "category": "Condiments", "price": 0}, {"name": "Cooking oil", "category": "Condiments", "price": 0}, {"name": "Seasoning sachets", "category": "Condiments", "price": 0}, {"name": "Laundry detergent powder", "category": "Laundry & Cleaning", "price": 0}, {"name": "Fabric conditioner", "category": "Laundry & Cleaning", "price": 0}, {"name": "Dishwashing liquid", "category": "Laundry & Cleaning", "price": 0}, {"name": "Bleach / cleaning liquid", "category": "Laundry & Cleaning", "price": 0}, {"name": "Bath soap", "category": "Personal Care", "price": 0}, {"name": "Shampoo sachet", "category": "Personal Care", "price": 0}, {"name": "Conditioner sachet", "category": "Personal Care", "price": 0}, {"name": "Toothpaste", "category": "Personal Care", "price": 0}, {"name": "Toothbrush", "category": "Personal Care", "price": 0}, {"name": "Cotton buds", "category": "Personal Care", "price": 0}, {"name": "Facial tissue", "category": "Paper & Hygiene", "price": 0}, {"name": "Toilet paper / tissue roll", "category": "Paper & Hygiene", "price": 0}, {"name": "Sanitary napkins", "category": "Paper & Hygiene", "price": 0}, {"name": "Disposable diapers", "category": "Paper & Hygiene", "price": 0}, {"name": "Eggs", "category": "Fresh & Bakery", "price": 0}, {"name": "Packaged bread", "category": "Fresh & Bakery", "price": 0}, {"name": "Assorted bread / bakery items", "category": "Fresh & Bakery", "price": 0}, {"name": "Plastic drinking cups", "category": "Store Supplies", "price": 0}, {"name": "Drinking straws", "category": "Store Supplies", "price": 0}, {"name": "Plastic bags", "category": "Store Supplies", "price": 0}, {"name": "Assorted small household items", "category": "Household", "price": 0}];
+const categories=[{"name": "Noodles", "emoji": "🍜", "subtitle": "Instant noodles & cups", "className": "noodles"}, {"name": "Canned Goods", "emoji": "🥫", "subtitle": "Sardines, meat & more", "className": "canned"}, {"name": "Biscuits & Crackers", "emoji": "🍪", "subtitle": "Biscuits, cookies & wafers", "className": "biscuits"}, {"name": "Snacks", "emoji": "🍟", "subtitle": "Chips & savory snacks", "className": "snacks"}, {"name": "Candy & Sweets", "emoji": "🍬", "subtitle": "Candy, gum & chocolates", "className": "candy"}, {"name": "Coffee & Drinks", "emoji": "☕", "subtitle": "Coffee & powdered drinks", "className": "coffee"}, {"name": "Drinks", "emoji": "🥤", "subtitle": "Bottled drinks & water", "className": "drinks"}, {"name": "Condiments", "emoji": "🧂", "subtitle": "Sauces, oil & seasonings", "className": "condiments"}, {"name": "Laundry & Cleaning", "emoji": "🧼", "subtitle": "Laundry & dishwashing", "className": "cleaning"}, {"name": "Personal Care", "emoji": "🪥", "subtitle": "Bath & personal care", "className": "personal"}, {"name": "Paper & Hygiene", "emoji": "🧻", "subtitle": "Tissue & hygiene items", "className": "paper"}, {"name": "Fresh & Bakery", "emoji": "🍞", "subtitle": "Eggs & bread", "className": "bakery"}, {"name": "Store Supplies", "emoji": "🛍️", "subtitle": "Everyday store supplies", "className": "supplies"}, {"name": "Household", "emoji": "🧺", "subtitle": "Household essentials", "className": "household"}];
+const home=document.getElementById('home'),inside=document.getElementById('inside'),searchResults=document.getElementById('searchResults');
+const q=document.getElementById('q'),empty=document.getElementById('empty');let active=null;
+document.getElementById('count').textContent=products.length+' (bilang ng paninda)';
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function listFor(c){return products.filter(p=>p.category===c);}
+function card(p){return `<div class="item"><div class="item-name">${esc(p.name)}</div><div class="price">₱${Number(p.price||0).toFixed(2)}</div></div>`;}
+function showList(target,items,groupNoodles=false){
+ if(!items.length){target.innerHTML='';return;}
+ if(groupNoodles&&active==='Noodles'){
+  const groups=[{name:'Lucky Me',re:/lucky me|pancit canton/i},{name:'Nissin Ramen',re:/nissin|ramen/i},{name:'Cup Noodles',re:/cup noodles?/i}];
+  let used=new Set(),out='';
+  groups.forEach(g=>{let a=items.filter(p=>g.re.test(p.name));if(a.length){a.forEach(p=>used.add(p));out+=`<h3 class="group">${g.name}</h3><div class="products">${a.map(card).join('')}</div>`;}});
+  let rest=items.filter(p=>!used.has(p));if(rest.length)out+=`<h3 class="group">Other Noodles</h3><div class="products">${rest.map(card).join('')}</div>`;
+  target.innerHTML=out;
+ }else target.innerHTML=`<div class="products">${items.map(card).join('')}</div>`;
+}
+function renderCategories(){
+ document.getElementById('catGrid').innerHTML=categories.map(c=>`<button class="cat" type="button" data-cat="${esc(c.name)}"><span class="art ${esc(c.className)}"><b>${c.emoji}</b></span><span class="info"><span class="cat-name">${esc(c.name)}</span><span class="sub">${esc(c.subtitle)}</span><span class="qty">${listFor(c.name).length} items</span></span></button>`).join('');
+ document.querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click',()=>openCat(b.dataset.cat)));
+}
+function openCat(name){
+ active=name;let c=categories.find(x=>x.name===name);home.style.display='none';searchResults.style.display='none';inside.style.display='block';empty.style.display='none';
+ document.getElementById('catTitle').textContent=name;document.getElementById('catSubtitle').textContent=listFor(name).length+' products';
+ document.getElementById('catIcon').textContent=c?c.emoji:'🛒';document.getElementById('catIcon').className='cat-icon '+(c?c.className:'general');
+ document.getElementById('helper').textContent='Tingnan ang mga paninda sa ibaba.';showList(document.getElementById('catProducts'),listFor(name),true);
+}
+function goHome(){active=null;q.value='';inside.style.display='none';searchResults.style.display='none';home.style.display='block';empty.style.display='none';document.getElementById('helper').textContent='Pumili ng kategorya para makita ang mga paninda.';}
+function searchNow(){
+ let term=q.value.trim().toLowerCase();if(!term){if(active)openCat(active);else goHome();return;}
+ active=null;home.style.display='none';inside.style.display='none';searchResults.style.display='block';
+ let found=products.filter(p=>(p.name+' '+p.category).toLowerCase().includes(term));
+ document.getElementById('found').textContent=found.length+' found';showList(document.getElementById('searchProducts'),found,false);
+ empty.style.display=found.length?'none':'block';document.getElementById('helper').textContent='Search results for your product.';
+}
+document.getElementById('back').addEventListener('click',goHome);q.addEventListener('input',searchNow);renderCategories();
+</script></body></html>
