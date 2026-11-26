@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#245b3d"><title>Nerissa Sari-Sari Store Price List</title>
+<style>
+:root{--green:#245b3d;--dark:#17442c;--bg:#f5f7f3;--line:#e1e8df;--muted:#687469}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#202820;font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(135deg,#17442c,#34764d);color:white;padding:20px 15px}
+.head{max-width:900px;margin:auto;display:flex;align-items:center;gap:13px}.logo{width:52px;height:52px;border-radius:16px;background:#ffffff25;display:grid;place-items:center;font-size:30px}
+h1{font-size:clamp(1.4rem,4vw,1.9rem);margin:0 0 4px}header p{margin:0;color:#e3f0e6;font-size:.92rem}
+main{max-width:900px;margin:auto;padding:17px 13px 40px}.top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
+#helper{margin:0;color:var(--muted);font-size:.94rem}.count{white-space:nowrap;background:#e8f2e9;color:var(--dark);font-size:.82rem;font-weight:bold;padding:8px 11px;border-radius:30px}
+.search{position:relative;margin-bottom:17px}.search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:20px}
+#q{width:100%;padding:16px 14px 16px 45px;border:1px solid #d5dfd4;border-radius:14px;background:white;font-size:1rem;outline:none}
+#q:focus{border-color:var(--green);box-shadow:0 0 0 3px #245b3d18}
+.heading{display:flex;align-items:center;justify-content:space-between;margin:8px 1px 13px}.heading h2{font-size:1.15rem;margin:0}.hint{font-size:.8rem;color:var(--muted)}
+.cat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.cat{padding:0;border:1px solid var(--line);border-radius:17px;overflow:hidden;background:white;text-align:left;box-shadow:0 4px 14px #1837200d;cursor:pointer}
+.art{height:116px;display:grid;place-items:center;position:relative;overflow:hidden}.art:before,.art:after{content:"";position:absolute;border-radius:50%;background:#ffffff38}
+.art:before{width:135px;height:135px;right:-28px;top:-62px}.art:after{width:90px;height:90px;left:-27px;bottom:-48px}
+.art b{font-size:58px;z-index:1;filter:drop-shadow(0 4px 2px #0002)}
+.info{display:block;padding:11px 12px 13px}.cat-name{display:block;font-size:1rem;font-weight:800;line-height:1.25}.sub{display:block;font-size:.78rem;color:var(--muted);margin-top:4px;line-height:1.25}
+.qty{display:inline-block;margin-top:8px;background:#e8f2e9;color:var(--dark);padding:5px 8px;border-radius:20px;font-size:.74rem;font-weight:bold}
+.noodles{background:linear-gradient(135deg,#f9d77a,#f2a34b)}.canned{background:linear-gradient(135deg,#f6c2a5,#e88967)}
+.biscuits{background:linear-gradient(135deg,#f4d8a1,#d9a85f)}.snacks{background:linear-gradient(135deg,#f7c879,#ed9250)}
+.candy{background:linear-gradient(135deg,#f6b7d1,#dc83b4)}.coffee{background:linear-gradient(135deg,#d9b18b,#9b6948)}
+.drinks{background:linear-gradient(135deg,#a9dff0,#5daecf)}.condiments{background:linear-gradient(135deg,#e5d89b,#b7a451)}
+.cleaning{background:linear-gradient(135deg,#b8e4d1,#65b79a)}.personal{background:linear-gradient(135deg,#d8c4ef,#a58bd1)}
+.paper{background:linear-gradient(135deg,#d6e3f1,#91b2d3)}.bakery{background:linear-gradient(135deg,#f1d7a6,#c99a5c)}
+.supplies{background:linear-gradient(135deg,#d5d9df,#9ba7b5)}.household,.general{background:linear-gradient(135deg,#c8dfc3,#85b47d)}
+#inside{display:none}.back{border:0;border-radius:12px;background:#e8f2e9;color:var(--dark);font-weight:bold;font-size:.95rem;padding:12px 15px;margin:0 0 14px;cursor:pointer}
+.cat-title{display:flex;align-items:center;gap:12px;margin-bottom:12px}.cat-icon{width:58px;height:58px;border-radius:15px;display:grid;place-items:center;font-size:34px}
+.cat-title h2{margin:0;font-size:1.25rem}.cat-title p{margin:4px 0 0;color:var(--muted);font-size:.84rem}
+.group{font-size:1rem;color:var(--dark);margin:17px 1px 9px}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.item{min-height:90px;padding:13px 11px;border:1px solid var(--line);border-radius:13px;background:white;display:flex;flex-direction:column;justify-content:space-between}
+.item-name{font-size:.96rem;font-weight:700;line-height:1.3;overflow-wrap:anywhere}.price{font-size:1.12rem;font-weight:900;color:var(--dark);margin-top:12px}
+#searchResults{display:none}.empty{display:none;text-align:center;padding:28px;background:white;border:1px solid var(--line);border-radius:13px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.8rem;line-height:1.5;margin:23px 2px 0}
+@media(min-width:700px){.cat-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.art{height:135px}.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:360px){main{padding-left:10px;padding-right:10px}.art{height:96px}.info{padding:9px}.cat-name{font-size:.92rem}.item{padding:11px 9px}.item-name{font-size:.9rem}}
+.increase-section{margin:0 0 22px;padding:13px;background:#fff7ed;border:1px solid #fed7aa;border-radius:15px}.increase-section .heading{color:#9a3412;gap:8px}.increase-section .hint{color:#9a3412}.increase-note{font-size:.82rem;color:#9a3412;margin:0 0 12px}.item.increased{border-color:#fdba74;background:#fffbf5}.old-price{font-size:.85rem;color:#687469;text-decoration:line-through;margin-top:9px}.increased .price{margin-top:3px}.increase-tag{align-self:flex-start;font-size:.76rem;font-weight:bold;color:#9a3412;background:#ffedd5;border-radius:6px;padding:5px 7px;margin-top:7px}.sample-tag{font-size:.72rem;color:#9a3412;margin-top:5px}
+.price-line{display:flex;align-items:baseline;gap:7px;white-space:nowrap;margin-top:12px}.price-line .old-price,.price-line .price{margin:0}.price-line .old-price{font-size:clamp(.65rem,2.6vw,.85rem)}.price-line .price{font-size:clamp(.88rem,3.5vw,1.12rem)}.view-increases{display:block;width:100%;margin-top:13px;padding:12px;border:1px solid #fdba74;border-radius:10px;background:#fff;color:#9a3412;font-weight:700;font-size:.9rem;cursor:pointer}.view-increases[hidden]{display:none}#allIncreases{display:none}
+/* Reserve two lines for labels and product names, including short names. */
+.sub{height:2.5em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.item-name{height:2.6em;flex-shrink:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.cat{display:flex;flex-direction:column}.cat .art,.cat .info{width:100%}.cat .info{flex:1;display:flex;flex-direction:column;align-items:flex-start}.cat .qty{margin-top:auto;transform:none}.cat .sub{margin-bottom:8px;width:100%}
+</style></head><body>
+<header><div class="head"><div class="logo">🛒</div><div><h1>Nerissa Sari-Sari Store</h1><p>Product Price List</p></div></div></header>
+<main><div class="top"><p id="helper">Pumili ng kategorya para makita ang mga paninda.</p><span class="count" id="count">0 products</span></div>
+<div class="search"><span>🔎</span><input id="q" type="search" placeholder="Maghanap ng Anumang Paninda..." autocomplete="off"></div>
+<section id="home"><section class="increase-section" id="increaseSection" hidden><div class="heading"><h2>↗ Tumaas ang Presyo</h2><span class="hint" id="increaseCount"></span></div><p class="increase-note" id="increaseNote">Mga paninda na may bagong presyo.</p><div id="increaseProducts"></div><button type="button" class="view-increases" id="viewIncreases">Tingnan ang Lahat ng Tumaas na Presyo →</button></section><div class="heading"><h2>Mga Kategorya ng Paninda</h2><span class="hint">Pumili ng Kategorya</span></div><div class="cat-grid" id="catGrid"></div></section>
+<section id="allIncreases"><button type="button" class="back" id="backIncreases">← Bumalik sa Pangunahing Pahina</button><section class="increase-section"><div class="heading"><h2>↗ Tumaas ang Presyo</h2><span class="hint" id="allIncreaseCount"></span></div><p class="increase-note" id="allIncreaseNote"></p><div id="allIncreaseProducts"></div></section></section><section id="inside"><button class="back" id="back">← Bumalik sa mga kategorya</button><div class="cat-title"><div id="catIcon" class="cat-icon">🍜</div><div><h2 id="catTitle"></h2><p id="catSubtitle"></p></div></div><div id="catProducts"></div></section>
+<section id="searchResults"><div class="heading"><h2>Search Results</h2><span class="hint" id="found"></span></div><div id="searchProducts"></div></section>
+<div class="empty" id="empty">No matching product found. Try another name.</div>
+<!--<footer>Prices start at ₱0.00 except labeled price increase examples. Update the prices when ready. Product names are based on the supplied store video; unclear labels use general names.</footer>--></main>
+<script>
+// For a price increase, add oldPrice and update price. Remove oldPrice to clear the highlight. Remove sampleIncrease when using actual prices.
+const products=[
+{"name": "Instant pancit canton", "category": "Noodles", "price": 0},
+{"name": "Instant cup noodles", "category": "Noodles", "price": 0},
+{"name": "Instant mami noodles", "category": "Noodles", "price": 0},
+{"name": "Other instant noodles", "category": "Noodles", "price": 0},
+{"name": "Canned sardines", "category": "Canned Goods", "price": 0},
+{"name": "Canned corned beef", "category": "Canned Goods", "price": 0},
+{"name": "Canned meat loaf", "category": "Canned Goods", "price": 0},
+{"name": "Canned luncheon meat", "category": "Canned Goods", "price": 0},
+{"name": "Canned tuna", "category": "Canned Goods", "price": 0},
+{"name": "Canned pork and beans", "category": "Canned Goods", "price": 0},
+{"name": "Canned tomato sauce", "category": "Canned Goods", "price": 0},
+{"name": "Canned evaporated milk", "category": "Canned Goods", "price": 0},
+{"name": "Canned condensed milk", "category": "Canned Goods", "price": 0},
+{"name": "Assorted canned goods", "category": "Canned Goods", "price": 0},
+{"name": "Crackers", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Salted crackers", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Sandwich biscuits", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Chocolate biscuits", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Wafer sticks", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Assorted cookies", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Assorted snack chips", "category": "Snacks", "price": 0},
+{"name": "Corn chips", "category": "Snacks", "price": 0},
+{"name": "Potato chips", "category": "Snacks", "price": 0},
+{"name": "Cheese snacks", "category": "Snacks", "price": 0},
+{"name": "Assorted candies", "category": "Candy & Sweets", "price": 0},
+{"name": "Chewy candy", "category": "Candy & Sweets", "price": 0},
+{"name": "Lollipops", "category": "Candy & Sweets", "price": 0},
+{"name": "Bubble gum", "category": "Candy & Sweets", "price": 0},
+{"name": "Chocolate bars", "category": "Candy & Sweets", "price": 0},
+{"name": "3-in-1 coffee sachet", "category": "Coffee & Drinks", "price": 0},
+{"name": "Instant black coffee sachet", "category": "Coffee & Drinks", "price": 0},
+{"name": "Coffee creamer sachet", "category": "Coffee & Drinks", "price": 0},
+{"name": "Chocolate malt drink sachet", "category": "Coffee & Drinks", "price": 0},
+{"name": "Powdered juice drink sachet", "category": "Coffee & Drinks", "price": 0},
+{"name": "Powdered milk sachet", "category": "Coffee & Drinks", "price": 0},
+{"name": "Bottled soft drinks", "category": "Drinks", "price": 0},
+{"name": "Bottled water", "category": "Drinks", "price": 0},
+{"name": "Juice drink", "category": "Drinks", "price": 0},
+{"name": "Soy sauce", "category": "Condiments", "price": 0},
+{"name": "Vinegar", "category": "Condiments", "price": 0},
+{"name": "Fish sauce / patis", "category": "Condiments", "price": 0},
+{"name": "Cooking oil", "category": "Condiments", "price": 0},
+{"name": "Seasoning sachets", "category": "Condiments", "price": 0},
+{"name": "Laundry detergent powder", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Fabric conditioner", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Dishwashing liquid", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Bleach / cleaning liquid", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Bath soap", "category": "Personal Care", "price": 0},
+{"name": "Shampoo sachet", "category": "Personal Care", "price": 0},
+{"name": "Conditioner sachet", "category": "Personal Care", "price": 0},
+{"name": "Toothpaste", "category": "Personal Care", "price": 0},
+{"name": "Toothbrush", "category": "Personal Care", "price": 0},
+{"name": "Cotton buds", "category": "Personal Care", "price": 0},
+{"name": "Facial tissue", "category": "Paper & Hygiene", "price": 0},
+{"name": "Toilet paper / tissue roll", "category": "Paper & Hygiene", "price": 0},
+{"name": "Sanitary napkins", "category": "Paper & Hygiene", "price": 0},
+{"name": "Disposable diapers", "category": "Paper & Hygiene", "price": 0},
+{"name": "Eggs", "category": "Fresh & Bakery", "price": 0},
+{"name": "Packaged bread", "category": "Fresh & Bakery", "price": 0},
+{"name": "Assorted bread / bakery items", "category": "Fresh & Bakery", "price": 0},
+{"name": "Plastic drinking cups", "category": "Store Supplies", "price": 0},
+{"name": "Drinking straws", "category": "Store Supplies", "price": 0},
+{"name": "Plastic bags", "category": "Store Supplies", "price": 0},
+{"name": "Assorted small household items", "category": "Household", "price": 0},
+{"name": "Lucky Me Pancit Canton Kalamansi 80g", "category": "Noodles", "price": 17, "oldPrice": 15, "sampleIncrease": true},
+{"name": "Lucky Me Pancit Canton Original 80g", "category": "Noodles", "price": 0},
+{"name": "Lucky Me Pancit Canton Chilimansi 80g", "category": "Noodles", "price": 0},
+{"name": "Lucky Me Pancit Canton Sweet & Spicy 80g", "category": "Noodles", "price": 0},
+{"name": "Lucky Me Pancit Canton Kalamansi 120g", "category": "Noodles", "price": 0},
+{"name": "Lucky Me Pancit Canton Chilimansi 120g", "category": "Noodles", "price": 0},
+{"name": "Lucky Me Pancit Canton Extra Hot Chili 120g", "category": "Noodles", "price": 0},
+{"name": "Lucky Me Instant Beef Mami", "category": "Noodles", "price": 0},
+{"name": "Lucky Me Instant Chicken Mami", "category": "Noodles", "price": 0},
+{"name": "Lucky Me Instant Shrimp Mami", "category": "Noodles", "price": 0},
+{"name": "Payless Xtra Big 125g", "category": "Noodles", "price": 0},
+{"name": "Nissin Ramen Beef 62g", "category": "Noodles", "price": 0},
+{"name": "Nissin Mini Cup Noodles Chicken 30g", "category": "Noodles", "price": 0},
+{"name": "Nissin Cup Noodles Beef 40g", "category": "Noodles", "price": 0},
+{"name": "Nissin Cup Noodles Bulalo 40g", "category": "Noodles", "price": 0},
+{"name": "Nissin Cup Noodles Spicy Seafood 40g", "category": "Noodles", "price": 0},
+{"name": "Nissin Cup Noodles Spicy Beef 45g", "category": "Noodles", "price": 0},
+{"name": "Purefoods Luncheon Meat", "category": "Canned Goods", "price": 0},
+{"name": "Argentina Corned Beef 260g", "category": "Canned Goods", "price": 90, "oldPrice": 85, "sampleIncrease": true},
+{"name": "Argentina Meat Loaf 250g", "category": "Canned Goods", "price": 0},
+{"name": "Argentina Meat Loaf 150g", "category": "Canned Goods", "price": 0},
+{"name": "555 Tuna Flakes Afritada", "category": "Canned Goods", "price": 0},
+{"name": "555 Tuna Flakes in Oil", "category": "Canned Goods", "price": 0},
+{"name": "San Marino Corned Tuna 85g", "category": "Canned Goods", "price": 0},
+{"name": "San Marino Chili Corned Tuna 85g", "category": "Canned Goods", "price": 0},
+{"name": "Reno Liver Spread 85g", "category": "Canned Goods", "price": 28, "oldPrice": 25, "sampleIncrease": true},
+{"name": "Reno Liver Spread 230g", "category": "Canned Goods", "price": 0},
+{"name": "Argentina Ready-to-Use Giniling 150g", "category": "Canned Goods", "price": 0},
+{"name": "Alaska Evaporada 140ml", "category": "Canned Goods", "price": 0},
+{"name": "Alaska Evaporada 400ml", "category": "Canned Goods", "price": 0},
+{"name": "Jolly Mushroom Pieces & Stems 400g", "category": "Canned Goods", "price": 0},
+{"name": "Jolly Whole Mushrooms 400g", "category": "Canned Goods", "price": 0},
+{"name": "Saba Mackerel Natural Oil 425g", "category": "Canned Goods", "price": 0},
+{"name": "Saba Mackerel Natural Oil 155g", "category": "Canned Goods", "price": 0},
+{"name": "Equal Brown Sugar 250g", "category": "Condiments", "price": 0},
+{"name": "Del Monte Tomato Sauce 200g", "category": "Condiments", "price": 0},
+{"name": "Del Monte Tomato Sauce 250g", "category": "Condiments", "price": 0},
+{"name": "Del Monte Tomato Paste 150g", "category": "Condiments", "price": 0},
+{"name": "Ajinomoto Crispy Fry Original 65g", "category": "Condiments", "price": 0},
+{"name": "Sarsaya Oyster Sauce 30g", "category": "Condiments", "price": 0},
+{"name": "Coco Mama Fresh Gata 200ml", "category": "Condiments", "price": 0},
+{"name": "Coco Mama Fresh Gata 400ml", "category": "Condiments", "price": 0},
+{"name": "Knorr Chicken Cubes", "category": "Condiments", "price": 0},
+{"name": "Knorr Pork Cubes", "category": "Condiments", "price": 0},
+{"name": "Knorr Beef Cubes", "category": "Condiments", "price": 0},
+{"name": "UFC Banana Ketchup 100g", "category": "Condiments", "price": 14, "oldPrice": 12, "sampleIncrease": true},
+{"name": "UFC Banana Ketchup 200g", "category": "Condiments", "price": 0},
+{"name": "UFC Banana Ketchup 320g", "category": "Condiments", "price": 0},
+{"name": "Mama Sita’s Oyster Sauce 30g", "category": "Condiments", "price": 0},
+{"name": "Knorr Ginataang Gulay 29g", "category": "Condiments", "price": 0},
+{"name": "Eden Cheese Spread 45g", "category": "Condiments", "price": 0},
+{"name": "Eden Cheese 160g", "category": "Condiments", "price": 70, "oldPrice": 65, "sampleIncrease": true},
+{"name": "Knorr Liquid Seasoning", "category": "Condiments", "price": 0},
+{"name": "Ajinomoto 100g", "category": "Condiments", "price": 0},
+{"name": "Ajinomoto 500g", "category": "Condiments", "price": 0},
+{"name": "Ajinomoto 1kg", "category": "Condiments", "price": 0},
+{"name": "Ajinomoto Umami Seasoning 11g", "category": "Condiments", "price": 0},
+{"name": "Knorr Sinigang sa Isda 11g", "category": "Condiments", "price": 0},
+{"name": "Knorr Sinigang Sampalok 11g", "category": "Condiments", "price": 0},
+{"name": "Knorr Sinigang Sampalok 22g", "category": "Condiments", "price": 0},
+{"name": "Knorr Sinigang Sampalok 44g", "category": "Condiments", "price": 0},
+{"name": "Knorr Sinigang with Gabi 44g", "category": "Condiments", "price": 0},
+{"name": "Datu Puti Soy Sauce 340ml", "category": "Condiments", "price": 0},
+{"name": "Datu Puti Soy Sauce 100ml", "category": "Condiments", "price": 0},
+{"name": "Lorins Patis 150ml", "category": "Condiments", "price": 0},
+{"name": "Lady’s Choice Real Mayonnaise 220ml", "category": "Condiments", "price": 0},
+{"name": "Lady’s Choice Mayonnaise 80ml", "category": "Condiments", "price": 0},
+{"name": "Lady’s Choice Chicken Spread 80ml", "category": "Condiments", "price": 0},
+{"name": "Best Foods Magic Mayonnaise 80ml", "category": "Condiments", "price": 0},
+{"name": "Cream Cornstarch 200g", "category": "Condiments", "price": 0},
+{"name": "Cream Cornstarch 75g", "category": "Condiments", "price": 0},
+{"name": "Cream All-Purpose Flour 200g", "category": "Condiments", "price": 0},
+{"name": "Pure Basics Seasoning", "category": "Condiments", "price": 0},
+{"name": "Maggi Magic Sarap 150g", "category": "Condiments", "price": 0},
+{"name": "Del Monte Pineapple Tidbits 220ml", "category": "Condiments", "price": 0},
+{"name": "Cream-O Premium Chocolate", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Crossini Chocolate Hazelnut", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Combi Chocolate", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Jack n Jill Dewberry Strawberry", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Cream-O Chocolate Chip", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Cal Cheese Wafer 48g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Hansel Plain 32g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Hansel Mocha 32g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "M.Y. San Fita 30g", "category": "Biscuits & Crackers", "price": 10, "oldPrice": 8, "sampleIncrease": true},
+{"name": "Fudgee Barr Chocolate", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Fudgee Barr Dark Chocolate", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Quake Overload", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Rebisco Wafer Time", "category": "Biscuits & Crackers", "price": 0},
+{"name": "SkyFlakes Strawberry Sandwich", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Beng-Beng Chocolate 22g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Choco Mucho 30g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Nissin Wafer Strawberry", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Nissin Wafer Chocolate", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Rebisco Extreme", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Wafello Chocolate Wafer 48g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Rebisco Chocolate Sandwich 32g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Jack n Jill Overload Strawberry", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Yum Choco Snack 30g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Rebisco Crackers", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Rebisco Crackers 28g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Butter Cream Crackers 25g", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Jack n Jill Magic Chips Cheese", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Jack n Jill Magic Chips Nacho Cheese", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Presto Creams Peanut Butter", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Presto Creams Chocolate", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Presto Creams Cookies and Cream", "category": "Biscuits & Crackers", "price": 0},
+{"name": "Chippy BBQ 25g", "category": "Snacks", "price": 0},
+{"name": "Granny Goose Tortillos Cheese 25g", "category": "Snacks", "price": 0},
+{"name": "Roller Coaster 24g", "category": "Snacks", "price": 0},
+{"name": "Nova Multigrain Crunch 38g", "category": "Snacks", "price": 0},
+{"name": "Piattos BBQ 25g", "category": "Snacks", "price": 0},
+{"name": "Piattos Roast Beef 40g", "category": "Snacks", "price": 0},
+{"name": "Piattos Cheese 40g", "category": "Snacks", "price": 0},
+{"name": "Piattos Sour Cream 40g", "category": "Snacks", "price": 0},
+{"name": "V-Cut BBQ 25g", "category": "Snacks", "price": 0},
+{"name": "Oishi Marty’s Plain", "category": "Snacks", "price": 0},
+{"name": "Oishi Marty’s Spicy 26g", "category": "Snacks", "price": 0},
+{"name": "Oishi Marty’s Spicy 90g", "category": "Snacks", "price": 0},
+{"name": "Tomi Sweet Corn 25g", "category": "Snacks", "price": 0},
+{"name": "Tomi Sweet Corn 110g", "category": "Snacks", "price": 0},
+{"name": "Oishi Fish Crackers 22g", "category": "Snacks", "price": 0},
+{"name": "Oishi Prawn Crackers 24g", "category": "Snacks", "price": 0},
+{"name": "Oishi Spicy Prawn Crackers 24g", "category": "Snacks", "price": 0},
+{"name": "Oishi Onion Rings 16g", "category": "Snacks", "price": 0},
+{"name": "Oishi Crispy Patata 25g", "category": "Snacks", "price": 0},
+{"name": "Oishi Crispy Cheese 18g", "category": "Snacks", "price": 0},
+{"name": "Oishi Pods Pea Snack 28g", "category": "Snacks", "price": 0},
+{"name": "Potato Fries Ketchup 21g", "category": "Snacks", "price": 0},
+{"name": "Potato Fries Plain 21g", "category": "Snacks", "price": 0},
+{"name": "Cheez-It Cheese 25g", "category": "Snacks", "price": 0},
+{"name": "Cheez-It Ham & Cheese 25g", "category": "Snacks", "price": 0},
+{"name": "Cheese Clubs 23g", "category": "Snacks", "price": 0},
+{"name": "Moby Caramel Puffs 25g", "category": "Snacks", "price": 0},
+{"name": "Moby Chocolate 25g", "category": "Snacks", "price": 0},
+{"name": "Boy Bawang Hot Garlic 90g", "category": "Snacks", "price": 0},
+{"name": "Boy Bawang Lechon Manok 90g", "category": "Snacks", "price": 0},
+{"name": "Ding Dong 100g", "category": "Snacks", "price": 0},
+{"name": "Ding Dong Snack Mix 95g", "category": "Snacks", "price": 0},
+{"name": "Clover Chips Cheese 24g", "category": "Snacks", "price": 0},
+{"name": "Snacku 30g", "category": "Snacks", "price": 0},
+{"name": "Regent Cheese Rings 25g", "category": "Snacks", "price": 0},
+{"name": "Sugo Peanuts 50g", "category": "Snacks", "price": 0},
+{"name": "Sugo Hot & Spicy Peanuts 50g", "category": "Snacks", "price": 0},
+{"name": "Jack n Jill Mr. Chips Sukat Sili 26g", "category": "Snacks", "price": 0},
+{"name": "Tasty Boy Breading Mix 65g", "category": "Snacks", "price": 0},
+{"name": "Flat Tops", "category": "Candy & Sweets", "price": 0},
+{"name": "Marshies Strawberry 40g", "category": "Candy & Sweets", "price": 0},
+{"name": "Marshies Vanilla 40g", "category": "Candy & Sweets", "price": 0},
+{"name": "XO Coffee Candy", "category": "Candy & Sweets", "price": 0},
+{"name": "Maxx Honey Lemon Candy", "category": "Candy & Sweets", "price": 0},
+{"name": "Wiggles Strawberry", "category": "Candy & Sweets", "price": 0},
+{"name": "Happy Cola Pop", "category": "Candy & Sweets", "price": 0},
+{"name": "Skittles Tube 30g", "category": "Candy & Sweets", "price": 0},
+{"name": "Kinder Joy Pink", "category": "Candy & Sweets", "price": 0},
+{"name": "Energen Chocolate 40g", "category": "Coffee & Drinks", "price": 0},
+{"name": "Nescafé Classic", "category": "Coffee & Drinks", "price": 9, "oldPrice": 7, "sampleIncrease": true},
+{"name": "Kopiko Lucky Day 180ml", "category": "Coffee & Drinks", "price": 0},
+{"name": "Kopiko LA Coffee 25g", "category": "Coffee & Drinks", "price": 0},
+{"name": "Kopiko Brown Coffee", "category": "Coffee & Drinks", "price": 0},
+{"name": "Kopiko Blanca Coffee", "category": "Coffee & Drinks", "price": 0},
+{"name": "Great Taste White Twin", "category": "Coffee & Drinks", "price": 0},
+{"name": "Tang Dalandan 19g", "category": "Coffee & Drinks", "price": 0},
+{"name": "Tang Orange 19g", "category": "Coffee & Drinks", "price": 0},
+{"name": "Tang Pineapple 19g", "category": "Coffee & Drinks", "price": 0},
+{"name": "Vitasoy Original 300ml", "category": "Drinks", "price": 0},
+{"name": "Dutch Mill Strawberry 90ml", "category": "Drinks", "price": 0},
+{"name": "Dutch Mill Yogurt Drink 180ml", "category": "Drinks", "price": 0},
+{"name": "Zest-O Chocolate 180ml", "category": "Drinks", "price": 0},
+{"name": "Big 250ml", "category": "Drinks", "price": 0},
+{"name": "Coca-Cola Mismo 290ml", "category": "Drinks", "price": 0},
+{"name": "Coca-Cola 1.75L", "category": "Drinks", "price": 0},
+{"name": "Sprite Mismo 290ml", "category": "Drinks", "price": 22, "oldPrice": 20, "sampleIncrease": true},
+{"name": "Mountain Dew 290ml", "category": "Drinks", "price": 23, "oldPrice": 20, "sampleIncrease": true},
+{"name": "Gatorade 500ml", "category": "Drinks", "price": 0},
+{"name": "Pocari Sweat 350ml", "category": "Drinks", "price": 0},
+{"name": "Sting Strawberry 290ml", "category": "Drinks", "price": 0},
+{"name": "C2 Apple 230ml", "category": "Drinks", "price": 0},
+{"name": "Zonrox Original 250ml", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Zonrox Original 1L", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Zonrox Colorsafe 225ml", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Zonrox Colorsafe 900ml", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Ariel Liquid Detergent", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Ariel Original Powder 66g", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Wings Powder Detergent 70g", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Calla Powder Detergent 100g", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Bioderm Soap 60g", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Downy Fabric Conditioner 75ml", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Scotch-Brite Sponge", "category": "Laundry & Cleaning", "price": 0},
+{"name": "Cream Silk Conditioner", "category": "Personal Care", "price": 0},
+{"name": "Dove Shampoo", "category": "Personal Care", "price": 0},
+{"name": "Pantene Shampoo", "category": "Personal Care", "price": 0},
+{"name": "Bioderm Soap 135g", "category": "Personal Care", "price": 0},
+{"name": "Rexona Powder Dry Deodorant 3ml", "category": "Personal Care", "price": 0},
+{"name": "Juicy Cologne 50ml", "category": "Personal Care", "price": 0},
+{"name": "Happy Cotton Balls 10g", "category": "Personal Care", "price": 0},
+{"name": "Sanicare Cotton Buds", "category": "Personal Care", "price": 0},
+{"name": "Happy Baby Pants M", "category": "Paper & Hygiene", "price": 0},
+{"name": "Happy Baby Pants L", "category": "Paper & Hygiene", "price": 0},
+{"name": "Happy Baby Pants XL", "category": "Paper & Hygiene", "price": 0},
+{"name": "Happy Baby Pants XXL", "category": "Paper & Hygiene", "price": 0},
+{"name": "Happy Baby Pants XXXL", "category": "Paper & Hygiene", "price": 0},
+{"name": "EQ Pants Big Pack", "category": "Paper & Hygiene", "price": 0},
+{"name": "Mamon Classic 43g", "category": "Fresh & Bakery", "price": 0},
+{"name": "Doowee Donut Strawberry 42g", "category": "Fresh & Bakery", "price": 0},
+{"name": "Doowee Donut 42g", "category": "Fresh & Bakery", "price": 0}
+];
+const categories=[{"name": "Noodles", "emoji": "🍜", "subtitle": "Instant noodles & cups", "className": "noodles"}, {"name": "Canned Goods", "emoji": "🥫", "subtitle": "Sardines, meat & more", "className": "canned"}, {"name": "Biscuits & Crackers", "emoji": "🍪", "subtitle": "Biscuits, cookies & wafers", "className": "biscuits"}, {"name": "Snacks", "emoji": "🍟", "subtitle": "Chips & savory snacks", "className": "snacks"}, {"name": "Candy & Sweets", "emoji": "🍬", "subtitle": "Candy, gum & chocolates", "className": "candy"}, {"name": "Coffee & Drinks", "emoji": "☕", "subtitle": "Coffee & powdered drinks", "className": "coffee"}, {"name": "Drinks", "emoji": "🥤", "subtitle": "Bottled drinks & water", "className": "drinks"}, {"name": "Condiments", "emoji": "🧂", "subtitle": "Sauces, oil & seasonings", "className": "condiments"}, {"name": "Laundry & Cleaning", "emoji": "🧼", "subtitle": "Laundry & dishwashing", "className": "cleaning"}, {"name": "Personal Care", "emoji": "🪥", "subtitle": "Bath & personal care", "className": "personal"}, {"name": "Paper & Hygiene", "emoji": "🧻", "subtitle": "Tissue & hygiene items", "className": "paper"}, {"name": "Fresh & Bakery", "emoji": "🍞", "subtitle": "Eggs & bread", "className": "bakery"}, {"name": "Store Supplies", "emoji": "🛍️", "subtitle": "Everyday store supplies", "className": "supplies"}, {"name": "Household", "emoji": "🧺", "subtitle": "Household essentials", "className": "household"}];
+const home=document.getElementById('home'),inside=document.getElementById('inside'),searchResults=document.getElementById('searchResults');
+const q=document.getElementById('q'),empty=document.getElementById('empty');let active=null;
+document.getElementById('count').textContent=products.length+' products';
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function listFor(c){return products.filter(p=>p.category===c);}
+function hasIncrease(p){return p.oldPrice != null && Number.isFinite(Number(p.oldPrice)) && Number(p.price)>Number(p.oldPrice);}
+function detailedCard(p){const up=hasIncrease(p);return `<div class="item${up?' increased':''}"><div class="item-name" title="${esc(p.name)}">${esc(p.name)}</div><div>${up?`<div class="old-price">₱${Number(p.oldPrice).toFixed(2)}</div>`:''}<div class="price">₱${Number(p.price||0).toFixed(2)}</div>${up?`<div class="increase-tag">↑ +₱${(Number(p.price)-Number(p.oldPrice)).toFixed(2)}</div>${p.sampleIncrease?'':''}`:''}</div></div>`;}
+function card(p){const up=hasIncrease(p);return `<div class="item"><div class="item-name" title="${esc(p.name)}">${esc(p.name)}</div><div class="price-line">${up?`<span class="old-price" title="Previous price">₱${Number(p.oldPrice).toFixed(2)}</span>`:''}<span class="price" title="${p.sampleIncrease?'Sample price only':'Current price'}">₱${Number(p.price||0).toFixed(2)}</span></div></div>`;}
+const featuredNames=["Lucky Me Pancit Canton Kalamansi 80g", "Argentina Corned Beef 260g", "Sprite Mismo 290ml"];
+const allIncreases=document.getElementById('allIncreases');
+function renderIncreases(){const items=products.filter(hasIncrease);const featured=items.filter(p=>featuredNames.includes(p.name));const preview=[...featured,...items.filter(p=>!featuredNames.includes(p.name))].slice(0,3);const note=items.some(p=>p.sampleIncrease)?'':'Mga paninda na may bagong presyo.';document.getElementById('increaseSection').hidden=!items.length;document.getElementById('increaseCount').textContent=items.length+' products';document.getElementById('increaseNote').textContent=note;document.getElementById('allIncreaseNote').textContent=note;document.getElementById('allIncreaseCount').textContent=items.length+' products';document.getElementById('increaseProducts').innerHTML=`<div class="products">${preview.map(detailedCard).join('')}</div>`;document.getElementById('allIncreaseProducts').innerHTML=`<div class="products">${items.map(detailedCard).join('')}</div>`;document.getElementById('viewIncreases').hidden=items.length<=3;}
+function openIncreases(){active=null;q.value='';home.style.display='none';inside.style.display='none';searchResults.style.display='none';empty.style.display='none';allIncreases.style.display='block';document.getElementById('helper').textContent='Mga paninda na may bagong presyo.';renderIncreases();window.scrollTo(0,0);}
+function showList(target,items,groupNoodles=false){
+ if(!items.length){target.innerHTML='';return;}
+ if(groupNoodles&&active==='Noodles'){
+  const groups=[{name:'Lucky Me',re:/lucky me|pancit canton/i},{name:'Nissin Ramen',re:/nissin|ramen/i},{name:'Cup Noodles',re:/cup noodles?/i}];
+  let used=new Set(),out='';
+  groups.forEach(g=>{let a=items.filter(p=>g.re.test(p.name));if(a.length){a.forEach(p=>used.add(p));out+=`<h3 class="group">${g.name}</h3><div class="products">${a.map(card).join('')}</div>`;}});
+  let rest=items.filter(p=>!used.has(p));if(rest.length)out+=`<h3 class="group">Other Noodles</h3><div class="products">${rest.map(card).join('')}</div>`;
+  target.innerHTML=out;
+ }else target.innerHTML=`<div class="products">${items.map(card).join('')}</div>`;
+}
+function renderCategories(){
+ document.getElementById('catGrid').innerHTML=categories.map(c=>`<button class="cat" type="button" data-cat="${esc(c.name)}"><span class="art ${esc(c.className)}"><b>${c.emoji}</b></span><span class="info"><span class="cat-name">${esc(c.name)}</span><span class="sub" title="${esc(c.subtitle)}">${esc(c.subtitle)}</span><span class="qty">${listFor(c.name).length} items</span></span></button>`).join('');
+ document.querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click',()=>openCat(b.dataset.cat)));
+}
+function openCat(name){allIncreases.style.display='none';
+ active=name;let c=categories.find(x=>x.name===name);home.style.display='none';searchResults.style.display='none';inside.style.display='block';empty.style.display='none';
+ document.getElementById('catTitle').textContent=name;document.getElementById('catSubtitle').textContent=listFor(name).length+' products';
+ document.getElementById('catIcon').textContent=c?c.emoji:'🛒';document.getElementById('catIcon').className='cat-icon '+(c?c.className:'general');
+ document.getElementById('helper').textContent='Tingnan ang mga paninda sa ibaba.';showList(document.getElementById('catProducts'),listFor(name),true);
+}
+function goHome(){allIncreases.style.display='none';active=null;q.value='';inside.style.display='none';searchResults.style.display='none';home.style.display='block';empty.style.display='none';document.getElementById('helper').textContent='Pumili ng kategorya para makita ang mga paninda.';}
+function searchNow(){
+ let term=q.value.trim().toLowerCase();if(!term){if(active)openCat(active);else goHome();return;}
+ active=null;allIncreases.style.display='none';home.style.display='none';inside.style.display='none';searchResults.style.display='block';
+ let found=products.filter(p=>(p.name+' '+p.category).toLowerCase().includes(term));
+ document.getElementById('found').textContent=found.length+' found';showList(document.getElementById('searchProducts'),found,false);
+ empty.style.display=found.length?'none':'block';document.getElementById('helper').textContent='Search results for your product.';
+}
+document.getElementById('viewIncreases').addEventListener('click',openIncreases);document.getElementById('backIncreases').addEventListener('click',goHome);document.getElementById('back').addEventListener('click',goHome);q.addEventListener('input',searchNow);renderCategories();renderIncreases();
+</script></body></html>
