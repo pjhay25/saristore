@@ -14,6 +14,31 @@
     font-size: .80rem!important;
   }
 }
+.search input {
+    padding-right: 65px;
+}
+
+.clear-search {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #777;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.clear-search:hover {
+    color: #333;
+}
+
+.search input::-webkit-search-cancel-button {
+    display: none;
+}
+ 
 :root{--green:#245b3d;--dark:#17442c;--bg:#f5f7f3;--line:#e1e8df;--muted:#687469}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:#202820;font-family:Arial,Helvetica,sans-serif}
 header{background:linear-gradient(135deg,#17442c,#34764d);color:white;padding:20px 15px}
@@ -58,7 +83,11 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;line-height:1.5;marg
 </style></head><body>
 <header><div class="head"><div class="logo">🛒</div><div><h1>Nerissa Sari-Sari Store</h1><p>Product Price List</p></div></div></header>
 <main><div class="top"><p id="helper">Pumili ng kategorya para makita ang mga paninda.</p><span class="count" id="count">0 products</span></div>
-<div class="search"><span>🔎</span><input id="q" type="search" placeholder="Maghanap ng Anumang Paninda..." autocomplete="off"></div>
+<div class="search">
+    <span>🔎</span>
+    <input id="q" type="search" placeholder="Maghanap ng Paninda..." autocomplete="off">
+    <button type="button" class="clear-search" onclick="clearSearch()">Clear</button>
+</div>
 <section id="home"><section class="increase-section" id="increaseSection" hidden><div class="heading"><h2>↗ Tumaas ang Presyo</h2><span class="hint" id="increaseCount"></span></div><p class="increase-note" id="increaseNote">Mga paninda na may bagong presyo.</p><div id="increaseProducts"></div><button type="button" class="view-increases" id="viewIncreases">Tingnan ang Lahat ng Tumaas na Presyo →</button></section><div class="heading"><h2>Mga Kategorya ng Paninda</h2><span class="hint">Pumili ng Kategorya</span></div><div class="cat-grid" id="catGrid"></div></section>
 <section id="allIncreases"><button type="button" class="back" id="backIncreases">← Bumalik sa Pangunahing Pahina</button><section class="increase-section"><div class="heading"><h2>↗ Tumaas ang Presyo</h2><span class="hint" id="allIncreaseCount"></span></div><p class="increase-note" id="allIncreaseNote"></p><div id="allIncreaseProducts"></div></section></section><section id="inside"><button class="back" id="back">← Bumalik sa mga kategorya</button><div class="cat-title"><div id="catIcon" class="cat-icon">🍜</div><div><h2 id="catTitle"></h2><p id="catSubtitle"></p></div></div><div id="catProducts"></div></section>
 <section id="searchResults"><div class="heading"><h2>Search Results</h2><span class="hint" id="found"></span></div><div id="searchProducts"></div></section>
@@ -379,4 +408,8 @@ function searchNow(){
  empty.style.display=found.length?'none':'block';document.getElementById('helper').textContent='Search results for your product.';
 }
 document.getElementById('viewIncreases').addEventListener('click',openIncreases);document.getElementById('backIncreases').addEventListener('click',goHome);document.getElementById('back').addEventListener('click',goHome);q.addEventListener('input',searchNow);renderCategories();renderIncreases();
+ function clearSearch() {
+    document.getElementById("q").value = "";
+    searchNow();
+}
 </script></body></html>
